@@ -1,36 +1,9 @@
 ---
-- name: Install VS Code on RHEL 9.1
+- name: Print Hello World
   hosts: 192.168.122.212
-  become: yes
+  gather_facts: false
 
   tasks:
-    - name: Install required dependencies
-      dnf:
-        name:
-          - libX11
-        state: present
-      become: yes
-
-    - name: Download VS Code RPM package
-      get_url:
-        url: "https://go.microsoft.com/fwlink/?LinkID=760868"
-        dest: "/tmp/code.rpm"
-        validate_certs: no
-
-    - name: Import GPG key for VS Code
-      rpm_key:
-        key: "https://packages.microsoft.com/keys/microsoft.asc"
-        state: present
-      become: yes
-
-    - name: Install VS Code from RPM
-      dnf:
-        name: "/tmp/code.rpm"
-        state: present
-        disable_gpg_check: yes
-      become: yes
-
-    - name: Clean up downloaded RPM
-      file:
-        path: "/tmp/code.rpm"
-        state: absent
+    - name: Display Hello World
+      debug:
+        msg: "Hello, World!"
