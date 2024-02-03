@@ -1,5 +1,5 @@
 ---
-- name: Print Hello World
+- name: Print Hello World and Create Mohan Directory
   hosts: 192.168.122.212
   gather_facts: false
 
@@ -7,3 +7,9 @@
     - name: Display Hello World
       debug:
         msg: "Hello, World!"
+
+    - name: Create Mohan Directory
+      file:
+        path: "/home/redhat/mohan"
+        state: directory
+        mode: '0755'
